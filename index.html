@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Votre Agence] — Contenu juridique pour avocats</title>
+<meta name="description" content="Agence de contenu en abonnement pour avocats. Articles SEO, posts LinkedIn, newsletters — 100% conforme au RIN.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a2e;--warm:#8b7355;--sand:#d4c5b0;--cream:#faf9f7;
+  --muted:#5a5a6e;--border:#e8e6e1;--bg-alt:#f5f3ef;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:all .4s ease}
+.nav.scrolled{background:rgba(250,249,247,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:12px 0}
+.nav-inner{display:flex;justify-content:space-between;align-items:center}
+.nav-logo{display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--ink),var(--warm));border-radius:6px}
+.nav-logo-text{font-family:var(--serif);font-size:1.3rem;font-weight:600}
+.nav-cta{background:var(--ink);color:var(--cream);padding:10px 24px;border-radius:6px;font-size:.85rem;font-weight:600;letter-spacing:.03em;transition:background .3s}
+.nav-cta:hover{background:var(--warm)}
+
+/* HERO */
+.hero{padding:140px 0 80px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(139,115,85,.08) 0%,transparent 70%);border-radius:50%}
+.hero-badge{display:inline-block;padding:6px 16px;border-radius:100px;border:1px solid var(--sand);font-size:.8rem;font-weight:500;color:var(--warm);margin-bottom:28px;letter-spacing:.05em}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5.5vw,4rem);font-weight:600;line-height:1.1;margin-bottom:24px;max-width:750px}
+.hero h1 em{color:var(--warm);font-style:italic}
+.hero p{font-size:1.15rem;line-height:1.7;color:var(--muted);max-width:560px;margin-bottom:36px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--ink);color:var(--cream);padding:14px 32px;border-radius:6px;font-size:.95rem;font-weight:600;letter-spacing:.02em;border:2px solid var(--ink);transition:all .3s}
+.btn-primary:hover{background:var(--warm);border-color:var(--warm)}
+.btn-secondary{background:transparent;color:var(--ink);padding:14px 32px;border-radius:6px;font-size:.95rem;font-weight:500;border:2px solid var(--sand);transition:all .3s}
+.btn-secondary:hover{border-color:var(--warm);color:var(--warm)}
+
+/* STATS */
+.stats{background:var(--ink);padding:48px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;text-align:center}
+.stat-value{font-family:var(--serif);font-size:2.2rem;font-weight:600;color:var(--sand)}
+.stat-label{font-size:.82rem;color:rgba(250,249,247,.6);margin-top:4px;line-height:1.5}
+
+/* PROBLEM */
+.problem{padding:80px 0}
+.problem-head{text-align:center;max-width:700px;margin:0 auto 48px}
+.problem-head h2{font-family:var(--serif);font-size:2rem;font-weight:600;margin-bottom:20px}
+.problem-head p{font-size:1.05rem;line-height:1.8;color:var(--muted)}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.problem-card{background:white;border-radius:12px;padding:32px;border:1px solid var(--border);transition:all .3s}
+.problem-card:hover{box-shadow:0 8px 32px rgba(26,26,46,.08);transform:translateY(-4px)}
+.problem-card .icon{font-size:2rem;margin-bottom:16px}
+.problem-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin-bottom:8px}
+.problem-card p{font-size:.9rem;color:var(--muted);line-height:1.7}
+
+/* HOW */
+.how{padding:80px 0;background:white}
+.how h2{font-family:var(--serif);font-size:2rem;font-weight:600;text-align:center;margin-bottom:48px}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;text-align:center}
+.how-step .num{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--sand);margin-bottom:12px}
+.how-step h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin-bottom:8px}
+.how-step p{font-size:.88rem;color:var(--muted);line-height:1.7}
+
+/* PRICING */
+.pricing{padding:80px 0;background:var(--bg-alt)}
+.pricing-head{text-align:center;margin-bottom:48px}
+.pricing-head h2{font-family:var(--serif);font-size:2rem;font-weight:600;margin-bottom:12px}
+.pricing-head p{color:var(--muted);font-size:1rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start}
+.plan{background:white;border-radius:16px;padding:36px;border:1px solid var(--border);position:relative;transition:all .3s}
+.plan.featured{background:var(--ink);color:var(--cream);border:none;transform:scale(1.03);box-shadow:0 16px 48px rgba(26,26,46,.15)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--warm);color:white;padding:4px 16px;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.08em}
+.plan h3{font-family:var(--serif);font-size:1.4rem;font-weight:600;margin-bottom:4px}
+.plan .plan-desc{font-size:.85rem;opacity:.6;margin-bottom:20px}
+.plan .plan-price{margin-bottom:24px}
+.plan .plan-price span.amount{font-family:var(--serif);font-size:2.8rem;font-weight:700}
+.plan .plan-price span.period{font-size:.85rem;opacity:.5}
+.plan-features{margin-bottom:28px}
+.plan-features .feat{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.plan-features .feat .check{flex-shrink:0;font-size:1rem;line-height:1.5rem}
+.plan .check{color:var(--warm)}
+.plan.featured .check{color:var(--sand)}
+.plan-features .feat span:last-child{font-size:.88rem;line-height:1.5rem;opacity:.85}
+.plan-btn{width:100%;padding:14px 0;border-radius:8px;border:none;background:var(--ink);color:var(--cream);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s;letter-spacing:.02em;font-family:var(--sans)}
+.plan-btn:hover{opacity:.85;transform:translateY(-2px)}
+.plan.featured .plan-btn{background:var(--warm)}
+
+/* TESTIMONIALS */
+.testimonials{padding:80px 0;background:white}
+.testimonials h2{font-family:var(--serif);font-size:2rem;font-weight:600;text-align:center;margin-bottom:48px}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.test-card{background:var(--cream);border-radius:12px;padding:32px;border:1px solid var(--border);display:flex;flex-direction:column;min-height:200px}
+.test-card .quote-mark{font-family:var(--serif);font-size:2.4rem;color:var(--sand);line-height:1;margin-bottom:12px}
+.test-card .quote-text{font-size:.92rem;line-height:1.7;color:#3a3a4e;font-style:italic;flex:1}
+.test-card .author{margin-top:20px}
+.test-card .author-name{font-weight:600;font-size:.9rem}
+.test-card .author-role{font-size:.8rem;color:var(--warm)}
+.test-note{text-align:center;margin-top:24px;font-size:.8rem;color:#999;font-style:italic}
+
+/* GUARANTEE */
+.guarantee{padding:64px 0;background:var(--ink);text-align:center}
+.guarantee .icon{font-size:2.4rem;margin-bottom:16px}
+.guarantee h2{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--cream);margin-bottom:16px}
+.guarantee p{font-size:1rem;line-height:1.8;color:rgba(250,249,247,.7);max-width:700px;margin:0 auto}
+
+/* FAQ */
+.faq{padding:80px 0;background:var(--cream)}
+.faq h2{font-family:var(--serif);font-size:2rem;font-weight:600;text-align:center;margin-bottom:40px}
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e2e0dc;padding:20px 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center}
+.faq-q span:first-child{font-size:1.05rem;font-weight:500;color:var(--ink)}
+.faq-q .toggle{font-size:1.4rem;font-weight:300;color:var(--warm);transition:transform .3s;flex-shrink:0;margin-left:16px}
+.faq-item.open .toggle{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-top:12px;padding-right:40px}
+
+/* FINAL CTA */
+.final-cta{padding:80px 0;background:white;text-align:center}
+.final-cta h2{font-family:var(--serif);font-size:2rem;font-weight:600;margin-bottom:16px}
+.final-cta>div>p{color:var(--muted);font-size:1rem;margin-bottom:32px;line-height:1.7;max-width:600px;margin-left:auto;margin-right:auto}
+.final-cta .btn-primary{display:inline-block}
+.final-cta .sub{margin-top:16px;font-size:.8rem;color:#999}
+
+/* FOOTER */
+.footer{background:var(--ink);padding:40px 0;border-top:1px solid rgba(255,255,255,.06)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{display:flex;align-items:center;gap:8px}
+.footer-logo-icon{width:24px;height:24px;background:linear-gradient(135deg,var(--cream),var(--warm));border-radius:4px}
+.footer-logo-text{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--cream)}
+.footer-copy{font-size:.78rem;color:rgba(250,249,247,.4)}
+
+@media(max-width:768px){
+  .hero{padding-top:110px}
+  .pricing-grid .plan.featured{transform:scale(1)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon"></div>
+      <span class="nav-logo-text">[Votre Agence]</span>
+    </div>
+    <a href="#pricing" class="nav-cta">Voir les offres</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="reveal">
+      <div class="hero-badge">CONTENU JURIDIQUE CONFORME • SEO • LINKEDIN</div>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <h1>Attirez les <em>bons dossiers</em> grâce à du contenu qui travaille pour vous</h1>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <p>Nous créons du contenu juridique expert — articles SEO, posts LinkedIn, newsletters — 100% conforme au RIN. Vous vous concentrez sur vos dossiers.</p>
+    </div>
+    <div class="reveal hero-btns" style="transition-delay:.3s">
+      <a href="#pricing" class="btn-primary">Découvrir les offres →</a>
+      <a href="#how" class="btn-secondary">Comment ça marche</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="reveal"><div class="stat-value">72%</div><div class="stat-label">des recherches juridiques débutent sur Google</div></div>
+    <div class="reveal" style="transition-delay:.1s"><div class="stat-value">79 141</div><div class="stat-label">avocats en France en 2026</div></div>
+    <div class="reveal" style="transition-delay:.2s"><div class="stat-value">36%</div><div class="stat-label">exercent seuls et ont besoin de visibilité</div></div>
+    <div class="reveal" style="transition-delay:.3s"><div class="stat-value">0</div><div class="stat-label">risque disciplinaire grâce à notre conformité RIN</div></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-head reveal">
+      <h2>Le problème que vous connaissez</h2>
+      <p>Vous êtes un excellent avocat. Mais vos futurs clients ne le savent pas encore — parce qu'ils ne vous trouvent pas. Vos confrères qui publient régulièrement captent les dossiers que vous méritez. Pas parce qu'ils sont meilleurs. Parce qu'ils sont <strong>visibles</strong>.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="icon">🔍</div>
+        <h3>Invisible sur Google</h3>
+        <p>Vos clients potentiels cherchent « avocat + votre spécialité + votre ville » et tombent sur vos concurrents.</p>
+      </div>
+      <div class="problem-card reveal" style="transition-delay:.12s">
+        <div class="icon">⏰</div>
+        <h3>Pas le temps d'écrire</h3>
+        <p>Entre vos audiences, vos consultations et vos dossiers, publier du contenu passe toujours en dernier.</p>
+      </div>
+      <div class="problem-card reveal" style="transition-delay:.24s">
+        <div class="icon">⚖️</div>
+        <h3>Peur de la déontologie</h3>
+        <p>Vous hésitez à communiquer par crainte de franchir une ligne rouge du RIN. Résultat : vous ne publiez rien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <h2 class="reveal">Comment ça fonctionne</h2>
+    <div class="how-grid">
+      <div class="how-step reveal"><div class="num">01</div><h3>Brief juridique</h3><p>Vous nous parlez de votre pratique, vos spécialités, vos clients types. 30 minutes suffisent.</p></div>
+      <div class="how-step reveal" style="transition-delay:.1s"><div class="num">02</div><h3>Création & conformité</h3><p>Nous rédigeons votre contenu, le sourçons juridiquement, et vérifions sa conformité au RIN.</p></div>
+      <div class="how-step reveal" style="transition-delay:.2s"><div class="num">03</div><h3>Validation & publication</h3><p>Vous validez chaque contenu. Nous planifions la publication sur vos canaux.</p></div>
+      <div class="how-step reveal" style="transition-delay:.3s"><div class="num">04</div><h3>Résultats & itération</h3><p>Rapport mensuel de performance. On ajuste la stratégie pour maximiser vos résultats.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-head reveal">
+      <h2>Nos offres</h2>
+      <p>Chaque contenu est vérifié conforme au RIN. Zéro risque disciplinaire.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- VISIBILITE -->
+      <div class="plan reveal">
+        <h3>Visibilité</h3>
+        <p class="plan-desc">Posez les bases de votre présence en ligne</p>
+        <div class="plan-price"><span class="amount">597€</span><span class="period"> / mois</span></div>
+        <div class="plan-features">
+          <div class="feat"><span class="check">✓</span><span>2 articles SEO juridiques / mois</span></div>
+          <div class="feat"><span class="check">✓</span><span>8 posts LinkedIn rédigés</span></div>
+          <div class="feat"><span class="check">✓</span><span>Calendrier éditorial mensuel</span></div>
+          <div class="feat"><span class="check">✓</span><span>Checklist conformité RIN</span></div>
+          <div class="feat"><span class="check">✓</span><span>Engagement 3 mois</span></div>
+        </div>
+        <button class="plan-btn">Démarrer</button>
+      </div>
+      <!-- AUTORITE -->
+      <div class="plan featured reveal" style="transition-delay:.12s">
+        <div class="plan-badge">POPULAIRE</div>
+        <h3>Autorité</h3>
+        <p class="plan-desc">Devenez la référence dans votre domaine</p>
+        <div class="plan-price"><span class="amount">1 197€</span><span class="period"> / mois</span></div>
+        <div class="plan-features">
+          <div class="feat"><span class="check">✓</span><span>4 articles SEO juridiques / mois</span></div>
+          <div class="feat"><span class="check">✓</span><span>12 posts LinkedIn rédigés</span></div>
+          <div class="feat"><span class="check">✓</span><span>2 newsletters clients / mois</span></div>
+          <div class="feat"><span class="check">✓</span><span>Calendrier + KPI + mots-clés SEO</span></div>
+          <div class="feat"><span class="check">✓</span><span>Checklist + relecture déontologique</span></div>
+          <div class="feat"><span class="check">✓</span><span>Engagement 3 mois</span></div>
+        </div>
+        <button class="plan-btn">Choisir Autorité</button>
+      </div>
+      <!-- MACHINE -->
+      <div class="plan reveal" style="transition-delay:.24s">
+        <h3>Machine</h3>
+        <p class="plan-desc">Une machine à contenu complète pour votre cabinet</p>
+        <div class="plan-price"><span class="amount">2 497€</span><span class="period"> / mois</span></div>
+        <div class="plan-features">
+          <div class="feat"><span class="check">✓</span><span>8 articles SEO juridiques / mois</span></div>
+          <div class="feat"><span class="check">✓</span><span>20 posts LinkedIn rédigés</span></div>
+          <div class="feat"><span class="check">✓</span><span>4 newsletters clients / mois</span></div>
+          <div class="feat"><span class="check">✓</span><span>1 landing page de spécialité / mois</span></div>
+          <div class="feat"><span class="check">✓</span><span>Call stratégique mensuel</span></div>
+          <div class="feat"><span class="check">✓</span><span>Relecture déonto + veille réglementaire</span></div>
+          <div class="feat"><span class="check">✓</span><span>Engagement 6 mois</span></div>
+        </div>
+        <button class="plan-btn">Passer en Machine</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="reveal">Ce que disent nos confrères</h2>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Depuis que je publie régulièrement, mes demandes de consultation ont augmenté de 40%. Et je n'ai plus à m'inquiéter de la conformité déontologique.</p>
+        <div class="author"><div class="author-name">Maître L.D.</div><div class="author-role">Avocate en droit du travail — Paris</div></div>
+      </div>
+      <div class="test-card reveal" style="transition-delay:.12s">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Je n'avais aucune visibilité sur Google. En 4 mois, mon cabinet apparaît en première page sur mes mots-clés locaux.</p>
+        <div class="author"><div class="author-name">Maître R.M.</div><div class="author-role">Avocat en droit de la famille — Lyon</div></div>
+      </div>
+      <div class="test-card reveal" style="transition-delay:.24s">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Le contenu est précis, bien sourcé, et surtout conforme au RIN. C'est exactement ce qu'il me fallait.</p>
+        <div class="author"><div class="author-name">Maître S.K.</div><div class="author-role">Avocat en droit des affaires — Marseille</div></div>
+      </div>
+    </div>
+    <p class="test-note reveal">* Témoignages représentatifs — noms modifiés pour respecter la confidentialité.</p>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="container reveal">
+    <div class="icon">⚖️</div>
+    <h2>Notre engagement déontologique</h2>
+    <p>Chaque contenu livré est vérifié conforme aux articles 10 à 10.6 du Règlement Intérieur National. Pas de démarchage. Pas de résultats garantis. Pas de violation du secret professionnel. Si un contenu ne vous convient pas, nous le retravaillons sans frais.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="reveal">Questions fréquentes</h2>
+    <div class="faq-list reveal" style="transition-delay:.1s">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>Le contenu est-il conforme au RIN et à la déontologie ?</span><span class="toggle">+</span></div>
+        <div class="faq-a"><p>Oui, à 100%. Chaque contenu passe par notre checklist de conformité déontologique basée sur les articles 10 à 10.6 du Règlement Intérieur National. Aucun contenu n'est livré sans cette vérification.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>Qui rédige le contenu ?</span><span class="toggle">+</span></div>
+        <div class="faq-a"><p>Notre équipe combine expertise en marketing digital et connaissance approfondie du droit français. Nous utilisons l'IA comme outil d'accélération, mais chaque contenu est rédigé, vérifié et sourcé par des humains formés au droit.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>Puis-je valider les contenus avant publication ?</span><span class="toggle">+</span></div>
+        <div class="faq-a"><p>Absolument. Vous recevez tous les contenus pour approbation avant publication. Vous gardez le contrôle total sur votre image et votre communication.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>Comment mesurez-vous les résultats ?</span><span class="toggle">+</span></div>
+        <div class="faq-a"><p>Nous suivons vos KPI mensuellement : positions Google, trafic organique, engagement LinkedIn, et demandes de consultation générées. Un rapport vous est envoyé chaque mois.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span>Je n'ai pas de site web, est-ce un problème ?</span><span class="toggle">+</span></div>
+        <div class="faq-a"><p>Non. Nous pouvons commencer par LinkedIn et les newsletters, puis vous accompagner dans la création de votre site. Le pack Machine inclut la création de landing pages.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="reveal">
+      <h2>Prêt à devenir le cabinet qu'on trouve en premier ?</h2>
+      <p>Réservez un appel découverte de 15 minutes. Nous analyserons votre visibilité actuelle et vous proposerons un plan de contenu adapté à votre pratique.</p>
+      <a href="#" class="btn-primary">Réserver mon appel découverte →</a>
+      <p class="sub">Gratuit • Sans engagement • 100% confidentiel</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-icon"></div>
+      <span class="footer-logo-text">[Votre Agence]</span>
+    </div>
+    <p class="footer-copy">© 2026 — Contenu juridique conforme au RIN • Tous droits réservés</p>
+  </div>
+</footer>
+
+<script>
+// Scroll-triggered reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+</script>
+</body>
+</html>
